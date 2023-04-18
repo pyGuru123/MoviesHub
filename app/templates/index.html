@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Movies Hub</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="static/index.css">
+</head>
+<body>
+	<div class="container">
+		<form name="movieurl" action="/movieurl" method="post" autocomplete="off">
+			<div class="mb-3">
+				<label for="moviename" class="form-label">Movie Name</label>
+			    <input type="text" class="form-control" name="moviename" required="required">
+			</div>
+			<div class="mb-3">
+			    <label for="moviehash" class="form-label">Movie hash</label>
+			    <input type="text" class="form-control" name="moviehash" required="required">
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+
+		{% if shorten_url %}
+			<div class="p-3 mt-2 bg-success">
+				<p>{{shorten_url}}</p>
+			</div>
+		{% endif %}
+	</div>
+
+	<script type="text/javascript">
+		if ( window.history.replaceState ) {
+	        window.history.replaceState( null, null, window.location.href );
+	    }
+	</script>
+</body>
+</html>
