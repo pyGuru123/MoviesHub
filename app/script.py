@@ -2,11 +2,9 @@ import os
 import json
 import asyncio
 import telegram
-from dotenv import load_dotenv
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from app.utils import fetch_posts, random_post, aeshash
 
-load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 PUBLIC_CHANNEL = os.getenv("PUBLIC_CHANNEL")
