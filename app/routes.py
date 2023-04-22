@@ -14,11 +14,13 @@ def index():
 @app.route("/movieurl", methods=["GET", "POST"])
 def movieurl():
     if request.method == "POST":
-        name = request.form["moviename"]
-        url = request.form["moviehash"]
-        shorten_url = get_movie_url(name, url)
+        data = request.get_json()
+        name = data["name"]
+        url = data["hash"]
 
-        return render_template("index.html", shorten_url=shorten_url, message=None)
+        name = name.replace(" ", "+")
+        return jsonify({"url" : get_movie_url(name, url)})
+
 
 @app.route("/postbot", methods=["GET", "POST"])
 def postbot():

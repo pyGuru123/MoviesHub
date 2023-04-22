@@ -47,8 +47,8 @@ async def send_post(data):
         reply_markup = InlineKeyboardMarkup([row1])
     elif len(buttons) == 3:
         reply_markup = InlineKeyboardMarkup([row1, row2])
-# PUBLIC_CHANNEL, PRIVATE_CHANNEL, 
-    chat_ids = [BIN_CHANNEL]
+
+    chat_ids = [PUBLIC_CHANNEL, PRIVATE_CHANNEL, BIN_CHANNEL]
 
     for _id in chat_ids:
         await bot.send_photo(chat_id=_id, photo=image_url, caption=caption, reply_markup=reply_markup)
