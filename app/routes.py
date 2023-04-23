@@ -13,13 +13,14 @@ from flask import (
 
 from app import app
 from app.script import get_movie_url, send_post
+from app.utils import download_posts
 
 
 @app.route("/")
 @app.route("/index")
 @app.route("/home")
 def index():
-    return render_template("index.html", shorten_url=None)
+    return render_template("index.html")
 
 
 @app.route("/movieurl", methods=["GET", "POST"])
@@ -31,6 +32,11 @@ def movieurl():
 
         name = name.replace(" ", "+")
         return jsonify({"url": get_movie_url(name, url)})
+
+@app.route("/update", methods=["GET", "POST"])
+def update_posts():
+    download_posts()
+    return redirect("/index")
 
 
 @app.route("/postbot", methods=["GET", "POST"])
@@ -55,7 +61,7 @@ def postbot():
             if not url720.startswith("https://moviehubm"):
                 url720 = get_movie_url(caption.split()[0], url720)
             buttons.append([text720, url720])
-            
+
         if url1080:
             if not url1080.startswith("https://moviehubm"):
                 url1080 = get_movie_url(caption.split()[0], url1080)
@@ -65,4 +71,4 @@ def postbot():
 
         asyncio.run(send_post(data))
 
-    return redirect("/index", code=200)
+    return redirect("/index")

@@ -19,7 +19,7 @@ def fetch_posts():
     if not os.path.exists(file_path):
         download_posts()
     else:
-        creation_time = os.path.getctime(file_path)
+        creation_time = os.path.getmtime(file_path)
         creation_datetime = datetime.fromtimestamp(creation_time)
         creation_date = creation_datetime.date()
         today = datetime.today().date()

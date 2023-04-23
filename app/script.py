@@ -59,4 +59,6 @@ async def send_post(data):
             reply_markup=reply_markup,
             read_timeout=30,
             pool_timeout=30,
+            connect_timeout=30,
+            write_timeout=30,
         )
