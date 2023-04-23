@@ -11,9 +11,6 @@ PUBLIC_CHANNEL = os.getenv("PUBLIC_CHANNEL")
 PRIVATE_CHANNEL = os.getenv("PRIVATE_CHANNEL")
 BIN_CHANNEL = os.getenv("BIN_CHANNEL")
 
-bot = telegram.Bot(token=BOT_TOKEN)
-
-
 def get_movie_url(name, url):
     try:
         fetch_posts()
@@ -32,6 +29,8 @@ def get_movie_url(name, url):
 
 
 async def send_post(data):
+    bot = telegram.Bot(token=BOT_TOKEN)
+    
     print(data)
     image_url = data["image_url"]
     caption = data["caption"]
