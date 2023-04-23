@@ -14,3 +14,15 @@
 input {
 	margin-top: 2px;
 }
+
+img {
+	width: 80px;
+	height: 80px;
+	margin-left: 20px;
+	border-radius:50%;
+}
+
+nav {
+	font-family: Roboto, arial, helvetica;
+	user-select: none;
+}

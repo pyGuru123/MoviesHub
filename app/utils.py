@@ -4,13 +4,15 @@ import random
 import requests
 from datetime import datetime
 
+
 def download_posts():
     url = "https://moviehubm.blogspot.com/feeds/posts/summary?alt=json-in-script"
     r = requests.get(url)
     data = r.text
-    json_data = data.strip('gdata.io.handleScriptLoaded(').strip(');')
+    json_data = data.strip("gdata.io.handleScriptLoaded(").strip(");")
     with open("posts.json", "w") as file:
         json.dump(json_data, file)
+
 
 def fetch_posts():
     file_path = "posts.json"
@@ -29,15 +31,16 @@ def fetch_posts():
 def random_post(content):
     links = []
     for i in range(0, len(content)):
-        for j in range(0, len(content[i]['link'])):
-            if (content[i]['link'][j]['rel'] == "alternate"):
-                link = content[i]['link'][j]['href']
-                break;
+        for j in range(0, len(content[i]["link"])):
+            if content[i]["link"][j]["rel"] == "alternate":
+                link = content[i]["link"][j]["href"]
+                break
         links.append(link)
 
-    randindex = random.random() * len(links) 
+    randindex = random.random() * len(links)
     randindex = int(randindex)
     return links[randindex]
+
 
 def aeshash(random_post_link, name, url):
     # https://dl.tgxlink.eu.org/dl/643ee970cd3343ba2a658fe4

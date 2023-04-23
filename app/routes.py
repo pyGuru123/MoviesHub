@@ -1,5 +1,15 @@
 import asyncio
-from flask import render_template, request, json, jsonify, Response, flash, redirect, url_for, session
+from flask import (
+    render_template,
+    request,
+    json,
+    jsonify,
+    Response,
+    flash,
+    redirect,
+    url_for,
+    session,
+)
 
 from app import app
 from app.script import get_movie_url, send_post
@@ -9,7 +19,8 @@ from app.script import get_movie_url, send_post
 @app.route("/index")
 @app.route("/home")
 def index():
-    return render_template("index.html", shorten_url=None, message=None)
+    return render_template("index.html", shorten_url=None)
+
 
 @app.route("/movieurl", methods=["GET", "POST"])
 def movieurl():
@@ -19,7 +30,7 @@ def movieurl():
         url = data["hash"]
 
         name = name.replace(" ", "+")
-        return jsonify({"url" : get_movie_url(name, url)})
+        return jsonify({"url": get_movie_url(name, url)})
 
 
 @app.route("/postbot", methods=["GET", "POST"])
@@ -36,18 +47,22 @@ def postbot():
 
         buttons = []
         if url480:
+            if not url480.startswith("https://moviehubm"):
+                url480 = get_movie_url(caption.split()[0], url480)
             buttons.append([text480, url480])
+
         if url720:
+            if not url720.startswith("https://moviehubm"):
+                url720 = get_movie_url(caption.split()[0], url720)
             buttons.append([text720, url720])
+            
         if url1080:
+            if not url1080.startswith("https://moviehubm"):
+                url1080 = get_movie_url(caption.split()[0], url1080)
             buttons.append([text1080, url1080])
 
-        data = {
-            "image_url" : image_url,
-            "caption" : caption,
-            "buttons" : buttons
-        }
+        data = {"image_url": image_url, "caption": caption, "buttons": buttons}
 
         asyncio.run(send_post(data))
 
-    return render_template("index.html", shorten_url=None, message="Post Sent Successfully")
+    return redirect("/index", code=200)

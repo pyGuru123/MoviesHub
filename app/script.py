@@ -13,6 +13,7 @@ BIN_CHANNEL = os.getenv("BIN_CHANNEL")
 
 bot = telegram.Bot(token=BOT_TOKEN)
 
+
 def get_movie_url(name, url):
     try:
         fetch_posts()
@@ -25,13 +26,13 @@ def get_movie_url(name, url):
         shorten_link = aeshash(random_post_link, name, url)
 
         return shorten_link
-            
+
     except Exception as e:
         print(e)
 
 
 async def send_post(data):
-    print(data) 
+    print(data)
     image_url = data["image_url"]
     caption = data["caption"]
     buttons = data["buttons"]
@@ -51,4 +52,11 @@ async def send_post(data):
     chat_ids = [PUBLIC_CHANNEL, PRIVATE_CHANNEL, BIN_CHANNEL]
 
     for _id in chat_ids:
-        await bot.send_photo(chat_id=_id, photo=image_url, caption=caption, reply_markup=reply_markup)
+        await bot.send_photo(
+            chat_id=_id,
+            photo=image_url,
+            caption=caption,
+            reply_markup=reply_markup,
+            read_timeout=30,
+            pool_timeout=30,
+        )

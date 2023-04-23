@@ -8,6 +8,15 @@
 	<link rel="stylesheet" href="static/index.css">
 </head>
 <body>
+	<header>
+	    <nav class="navbar navbar-light bg-dark">
+	        <a class="navbar-brand fw-bold text-light" href="{{url_for('index')}}">
+	            <img src="{{url_for('static', filename='icon.jpg')}}"/>
+	            Movies Hub
+	        </a>
+	    </nav>
+	</header>
+
 	<div class="container">
 		<div class="url-gen">
 			<form name="movieurl" autocomplete="off">
@@ -27,11 +36,12 @@
 				</fieldset>
 			</form>
 
-			<div class="p-3 mt-2" style="background:#90EE90;height:60px;border-radius:10px;">
+			<div class="p-3 mt-2" style="background:#90EE90;border-radius:10px;overflow:auto;">
 				<p class="shorten-url" style="color:white;"></p>
 			</div>
 		</div>
-		
+
+		<hr/>
 
 		<div class="post-sender">
 			<form name="postbot" action="/postbot" method="post" autocomplete="off">
