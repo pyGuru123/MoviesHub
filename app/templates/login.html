@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MoviesHub Login</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/login.css">
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form action="/login" autocomplete="off" method="post">
+        <h3>Login Here</h3>
+
+        <label for="username">Username</label>
+        <input type="text" placeholder="Username" name="username" role="presentation" />
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" name="password" autocomplete="new-password">
+
+        <button type="submit">Log In</button>
+    </form>
+
+   	<script>
+	    if ( window.history.replaceState ) {
+		        window.history.replaceState( null, null, window.location.href );
+		    }
+	</script>
+</body>
+</html>

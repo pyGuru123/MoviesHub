@@ -1,3 +1,4 @@
+import os
 import asyncio
 from flask import (
     render_template,
@@ -15,12 +16,42 @@ from app import app
 from app.script import get_movie_url, send_post
 from app.utils import download_posts
 
+USERID = os.getenv("USERID")
+PASSWORD = os.getenv("PASSWORD")
 
 @app.route("/")
 @app.route("/index")
-@app.route("/home")
 def index():
+    if not session.get("userid"):
+        return redirect("/login")
+
     return render_template("index.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if session.get("userid"):
+        return redirect("/index")
+
+    if request.method == "POST":
+        userid = request.form.get("username")
+        password = request.form.get("password")
+
+        if userid == USERID and password == PASSWORD:
+            session["userid"] = userid
+            session["password"] = password
+
+            flash(f"Hello Admin, You are now loggedin", "success")
+            return redirect("/index")
+    return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    session.pop("userid")
+    session.pop("username", None)
+    # flash("You logged out succesfully", "success")
+    return redirect("/login")
 
 
 @app.route("/movieurl", methods=["GET", "POST"])

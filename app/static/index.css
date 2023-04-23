@@ -1,3 +1,15 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;	
+	font-family: Raleway, sans-serif;
+}
+
+/*body {
+	background: linear-gradient(90deg, #C7C5F4, #776BCC);		
+}*/
+
+
 .container {
 	margin-top:50px;
 }
@@ -7,7 +19,7 @@
 }
 
 .post-sender {
-	margin-top: 30px;
+	margin-top: 40px;
 	margin-bottom: 20px;
 }
 
@@ -20,6 +32,13 @@ img {
 	height: 80px;
 	margin-left: 20px;
 	border-radius:50%;
+}
+
+.logout-icon {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	border: 2px solid rgb(18, 18, 18);
 }
 
 nav {

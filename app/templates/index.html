@@ -14,10 +14,22 @@
 	            <img src="{{url_for('static', filename='icon.jpg')}}"/>
 	            Movies Hub
 	        </a>
+	        <a class="navbar-brand fw-bold text-light" href="{{url_for('logout')}}">
+	            <img class="logout-icon" src="{{url_for('static', filename='logout.png')}}"/>
+	        </a>
 	    </nav>
 	</header>
 
 	<div class="container">
+		{% with messages = get_flashed_messages(with_categories=true) %}
+	        {% if messages %}
+	            {% for category, message in messages %}
+	                <div class="alert alert-{{category}}">
+	                    <p>{{message}}</p>
+	                </div>
+	            {% endfor %}
+	        {% endif %}
+	    {% endwith %}
 		<div class="url-gen">
 			<form name="movieurl" autocomplete="off">
 				<fieldset class="border p-4">
@@ -41,7 +53,7 @@
 			</div>
 		</div>
 
-		<hr/>
+		<!-- <hr/> -->
 
 		<div class="post-sender">
 			<form name="postbot" action="/postbot" method="post" autocomplete="off">
@@ -57,25 +69,37 @@
 					    <input type="text" class="form-control" name="caption" required="required">
 					</div>
 
-					<div class="mb-3">
+					<div class="mb-3 row">
 					    <label for="text480" class="form-label">480p Data</label>
-					    <input type="text" class="form-control" name="text480" placeholder="480p text">
-					    <input type="text" class="form-control" name="url480" placeholder="hash-url">
+					    <div class="col-6">
+					    	<input type="text" class="form-control" name="text480" placeholder="480p text">
+					    </div>
+					    <div class="col-6">
+					    	<input type="text" class="form-control" name="url480" placeholder="hash-url">
+					    </div>
 					</div>
 
-					<div class="mb-3">
+					<div class="mb-3 row">
 					    <label for="text720" class="form-label">720p Data</label>
-					    <input type="text" class="form-control" name="text720" placeholder="720p text">
-					    <input type="text" class="form-control" name="url720" placeholder="hash-url">
+					    <div class="col-6">
+					    	<input type="text" class="form-control" name="text720" placeholder="720p text">
+					    </div>
+					    <div class="col-6">
+					    	<input type="text" class="form-control" name="url720" placeholder="hash-url">
+					    </div>
 					</div>
 
-					<div class="mb-3">
+					<div class="mb-3 row">
 					    <label for="text1080" class="form-label">1080p Data</label>
-					    <input type="text" class="form-control" name="text1080" placeholder="1080p text">
-					    <input type="text" class="form-control" name="url1080" placeholder="hash-url">
+					    <div class="col-6">
+					    	<input type="text" class="form-control" name="text1080" placeholder="1080p text">
+					    </div>
+					    <div class="col-6">
+					    	<input type="text" class="form-control" name="url1080" placeholder="hash-url">
+					    </div>
 					</div>
 
-					<button type="submit" class="btn btn-primary">Send</button>
+					<button type="submit" class="btn btn-primary">Send Post</button>
 
 				</fieldset>
 			</form>
