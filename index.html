@@ -13,7 +13,12 @@
 		});
 
 		let hash = params.hash;
-		window.location.href = hash;
+		let unhash = "";
+        for (var i=0; i<hash.length; i++) {
+            ascii = hash.charCodeAt(i) - 2;
+            unhash += String.fromCharCode(ascii);
+        }
+		window.location.href = unhash;
 
 	</script>
 </body>
