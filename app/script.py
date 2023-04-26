@@ -3,7 +3,10 @@ import json
 import asyncio
 import telegram
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.error import TelegramError
 from app.utils import fetch_posts, random_post, aeshash
+
+from app.model import Movie
 
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -28,10 +31,25 @@ def get_movie_url(name, url):
         print(e)
 
 
+def insert_to_db(data):
+    img_url = data["image_url"]
+    caption = data["caption"]
+    text480p, url480p, text720p, url720p, text1080p, url1080p = "","","","","",""
+    for button in data["buttons"]:
+        if "480p" in button[0] and button[1]:
+            text480p, url480p = button[0], button[1]
+        elif "720p" in button[0] and button[1]:
+            text720p, url720p = button[0], button[1]
+        elif "1080p" in button[0] and button[1]:
+            text1080p, url1080p = button[0], button[1]
+
+    movie = Movie(img_url, caption, text480p, url480p, text720p, url720p, text1080p, url1080p)
+    movie.save()
+
+
 async def send_post(data):
     bot = telegram.Bot(token=BOT_TOKEN)
     
-    print(data)
     image_url = data["image_url"]
     caption = data["caption"]
     buttons = data["buttons"]
@@ -61,3 +79,21 @@ async def send_post(data):
             connect_timeout=30,
             write_timeout=30,
         )
+
+    insert_to_db(data)
+
+
+# def get_all_posts():
+#     bot = telegram.Bot(token=BOT_TOKEN)
+#     try:
+#         chat = bot.get_chat(chat_id=BIN_CHANNEL)
+#     except TelegramError as e:
+#         print(f'Error: {e}')
+#         chat = []
+
+#     if chat is not None:
+#         messages = bot.get_messages(chat_id=chat.id)
+#     else:
+#         messages = []
+
+#     return json.stringify(messages)

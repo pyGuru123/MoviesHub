@@ -12,7 +12,8 @@ from flask import (
     session,
 )
 
-from app import app
+from app import app, db
+from app.model import Movie
 from app.script import get_movie_url, send_post
 from app.utils import download_posts
 
@@ -103,3 +104,29 @@ def postbot():
         asyncio.run(send_post(data))
 
     return redirect("/index")
+
+@app.route("/newmovie")
+def newmovie():
+    movie = Movie(
+        img_url="https://www.bollywoodhungama.com/wp-content/uploads/2023/01/Pathaan-2-10.jpg",
+        caption="pathann webrip",
+        text480p="480p 300mb",
+        url480p="hello123",
+        text720p="",
+        url720p="",
+        text1080p="",
+        url1080p="")
+
+    movie.save()
+
+# @app.route("/allmovies", methods=["GET", "POST"])
+# def allmovies():
+#     cursor = collection.find()
+#     for data in cursor:
+#         print(data)
+#     # for 
+#     return str(data)
+
+# @app.route("/allposts", methods=["GET", "POST"])
+# def allposts():
+#     return get_all_posts()
