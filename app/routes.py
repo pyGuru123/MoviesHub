@@ -16,6 +16,7 @@ from app import app, db
 from app.model import Movie
 from app.script import get_movie_url, send_post
 from app.utils import download_posts
+from app.forwarder import forward
 
 USERID = os.getenv("USERID")
 PASSWORD = os.getenv("PASSWORD")
@@ -51,7 +52,6 @@ def login():
 def logout():
     session.pop("userid")
     session.pop("username", None)
-    # flash("You logged out succesfully", "success")
     return redirect("/login")
 
 
@@ -118,6 +118,10 @@ def newmovie():
         url1080p="")
 
     movie.save()
+
+# @app.route("/forward")
+# def forwardd_movies():
+#     asyncio.run(forward())
 
 # @app.route("/allmovies", methods=["GET", "POST"])
 # def allmovies():
