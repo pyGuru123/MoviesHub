@@ -1,113 +1,97 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Movies Hub</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+{% extends "layout.html" %}
+
+{% block stylesheet %}
 	<link rel="stylesheet" href="static/index.css">
-</head>
-<body>
-	<header>
-	    <nav class="navbar navbar-light bg-dark">
-	        <a class="navbar-brand fw-bold text-light" href="{{url_for('index')}}">
-	            <img src="{{url_for('static', filename='icon.jpg')}}"/>
-	            Movies Hub
-	        </a>
-	        <a class="navbar-brand fw-bold text-light" href="{{url_for('logout')}}">
-	            <img class="logout-icon" src="{{url_for('static', filename='logout.png')}}"/>
-	        </a>
-	    </nav>
-	</header>
+{% endblock %}
 
-	<div class="container">
-		{% with messages = get_flashed_messages(with_categories=true) %}
-	        {% if messages %}
-	            {% for category, message in messages %}
-	                <div class="alert alert-{{category}}">
-	                    <p>{{message}}</p>
-	                </div>
-	            {% endfor %}
-	        {% endif %}
-	    {% endwith %}
-		<div class="url-gen">
-			<form name="movieurl" autocomplete="off">
-				<fieldset class="border p-4">
-				   <legend  class="float-none w-auto p-2">URL Generator</legend>
-				
-					<div class="mb-3">
-						<label for="moviename" class="form-label">Movie Name</label>
-					    <input type="text" class="form-control moviename" required="required">
-					</div>
-					<div class="mb-3">
-					    <label for="moviehash" class="form-label">Movie hash</label>
-					    <input type="text" class="form-control moviehash" required="required">
-					</div>
-					<button type="button" class="btn btn-primary gen-btn">Generate</button>
+{% block content %}
+	{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{category}}">
+                    <p>{{message}}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
-				</fieldset>
-			</form>
+	<div class="url-gen">
+		<form name="movieurl" autocomplete="off">
+			<fieldset class="border p-4">
+			   <legend  class="float-none w-auto p-2">URL Generator</legend>
+			
+				<div class="mb-3">
+					<label for="moviename" class="form-label">Movie Name</label>
+				    <input type="text" class="form-control moviename" required="required">
+				</div>
+				<div class="mb-3">
+				    <label for="moviehash" class="form-label">Movie hash</label>
+				    <input type="text" class="form-control moviehash" required="required">
+				</div>
+				<button type="button" class="btn btn-primary gen-btn">Generate</button>
 
-			<div class="p-3 mt-2" style="background:#90EE90;border-radius:10px;overflow:auto;">
-				<p class="shorten-url" style="color:white;"></p>
-			</div>
+			</fieldset>
+		</form>
+
+		<div class="p-3 mt-2" style="background:#90EE90;border-radius:10px;overflow:auto;">
+			<p class="shorten-url" style="color:white;"></p>
 		</div>
-
-		<!-- <hr/> -->
-
-		<div class="post-sender">
-			<form name="postbot" action="/postbot" method="post" autocomplete="off">
-				<fieldset class="border p-4">
-				   <legend  class="float-none w-auto p-2">Send Post on TG</legend>
-				
-					<div class="mb-3">
-						<label for="moviename" class="form-label">Image URL</label>
-					    <input type="text" class="form-control" name="imageurl" required="required">
-					</div>
-					<div class="mb-3">
-					    <label for="moviehash" class="form-label">Caption</label>
-					    <input type="text" class="form-control" name="caption" required="required">
-					</div>
-
-					<div class="mb-3 row">
-					    <label for="text480" class="form-label">480p Data</label>
-					    <div class="col-6">
-					    	<input type="text" class="form-control" name="text480" placeholder="480p text" value="480p ">
-					    </div>
-					    <div class="col-6">
-					    	<input type="text" class="form-control" name="url480" placeholder="hash-url">
-					    </div>
-					</div>
-
-					<div class="mb-3 row">
-					    <label for="text720" class="form-label">720p Data</label>
-					    <div class="col-6">
-					    	<input type="text" class="form-control" name="text720" placeholder="720p text" value="720p ">
-					    </div>
-					    <div class="col-6">
-					    	<input type="text" class="form-control" name="url720" placeholder="hash-url">
-					    </div>
-					</div>
-
-					<div class="mb-3 row">
-					    <label for="text1080" class="form-label">1080p Data</label>
-					    <div class="col-6">
-					    	<input type="text" class="form-control" name="text1080" placeholder="1080p text" value="1080p ">
-					    </div>
-					    <div class="col-6">
-					    	<input type="text" class="form-control" name="url1080" placeholder="hash-url">
-					    </div>
-					</div>
-
-					<button type="submit" class="btn btn-primary">Send Post</button>
-
-				</fieldset>
-			</form>
- 		</div>
-		
 	</div>
 
-	<script type="text/javascript">
+	<!-- <hr/> -->
+
+	<div class="post-sender">
+		<form name="postbot" action="/postbot" method="post" autocomplete="off">
+			<fieldset class="border p-4">
+			   <legend  class="float-none w-auto p-2">Send Post on TG</legend>
+			
+				<div class="mb-3">
+					<label for="moviename" class="form-label">Image URL</label>
+				    <input type="text" class="form-control" name="imageurl" required="required">
+				</div>
+				<div class="mb-3">
+				    <label for="moviehash" class="form-label">Caption</label>
+				    <input type="text" class="form-control" name="caption" required="required">
+				</div>
+
+				<div class="mb-3 row">
+				    <label for="text480" class="form-label">480p Data</label>
+				    <div class="col-6">
+				    	<input type="text" class="form-control" name="text480" placeholder="480p text" value="480p ">
+				    </div>
+				    <div class="col-6">
+				    	<input type="text" class="form-control" name="url480" placeholder="hash-url">
+				    </div>
+				</div>
+
+				<div class="mb-3 row">
+				    <label for="text720" class="form-label">720p Data</label>
+				    <div class="col-6">
+				    	<input type="text" class="form-control" name="text720" placeholder="720p text" value="720p ">
+				    </div>
+				    <div class="col-6">
+				    	<input type="text" class="form-control" name="url720" placeholder="hash-url">
+				    </div>
+				</div>
+
+				<div class="mb-3 row">
+				    <label for="text1080" class="form-label">1080p Data</label>
+				    <div class="col-6">
+				    	<input type="text" class="form-control" name="text1080" placeholder="1080p text" value="1080p ">
+				    </div>
+				    <div class="col-6">
+				    	<input type="text" class="form-control" name="url1080" placeholder="hash-url">
+				    </div>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Send Post</button>
+
+			</fieldset>
+		</form>
+	</div>
+{% endblock %}
+
+{% block script %}
 		const btn = document.querySelector(".gen-btn");
 		let moviename = document.querySelector(".moviename");
 		let moviehash = document.querySelector(".moviehash");
@@ -128,10 +112,4 @@
 			.then(response => response.json())
 			.then(data => shorten_url.innerText = data["url"]);
 		})
-
-		if ( window.history.replaceState ) {
-	        window.history.replaceState( null, null, window.location.href );
-	    }
-	</script>
-</body>
-</html>
+{% endblock %}
