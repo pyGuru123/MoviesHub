@@ -1,11 +1,25 @@
 <header>
     <nav class="navbar navbar-light bg-dark">
-        <a class="navbar-brand fw-bold text-light" href="{{url_for('index')}}">
-            <img src="{{url_for('static', filename='icon.jpg')}}"/>
-            Movies Hub
-        </a>
-        <a class="navbar-brand fw-bold text-light" href="{{url_for('logout')}}">
+    	<ul>
+    		<li class="logo">
+    			<a class="navbar-brand fw-bold text-light site-logo" href="{{url_for('index')}}">
+		            <img src="{{url_for('static', filename='icon.jpg')}}"/>
+		            Movies Hub
+		        </a>
+    		</li>
+    		<span class="menu">
+    			<li><a href="#"> Search </a></li>
+    			<li><a href="#"> Request a movie</a></li>
+    			<li><a href="#"> Check Database </a></li>
+    			<li><a href="#"> Update Posts </a></li>
+    			<li><a href="{{url_for('logout')}}"> Logout </a></li>
+    			<span class="close-menu"><i class="fas fa-times"></i></span>
+    		</span>
+    		<span class="open-menu"><i class="fas fa-bars"></i></span>
+    	</ul>
+        
+        <!-- <a class="navbar-brand fw-bold text-light" href="{{url_for('logout')}}">
             <img class="logout-icon" src="{{url_for('static', filename='logout.png')}}"/>
-        </a>
+        </a> -->
     </nav>
 </header>
