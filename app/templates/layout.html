@@ -26,15 +26,15 @@
 		var menu = document.querySelector(".menu");
 
 		open_menu.onclick = function() {
-			menu.style.display = "flex";
-			menu.style.transition = "1s ease-in-out";
-
+			// menu.style.display = "flex";
+			menu.style.right = "0";
 			open_menu.style.display = "none";
 			close_menu.style.display = "block";
 		}
 
 		close_menu.onclick = function() {
-			menu.style.display = "none";
+			// menu.style.display = "none";
+			menu.style.right = "-30%";
 			close_menu.style.display = "none";
 			open_menu.style.display = "block";
 		}		

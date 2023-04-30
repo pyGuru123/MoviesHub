@@ -6,26 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="static/login.css">
+    <link rel="stylesheet" href="static/movieshub.css">
+
+    <style>
+        .login-page {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
+    <div id="logo">
+        <div class="netflix">
+        </div>
+        <div class="rightb">
+        </div>
+        <span>oviesHub</span>
     </div>
-    <form action="/login" autocomplete="off" method="post">
-        <h3>MoviesHub Login</h3>
 
-        <label for="username">Username</label>
-        <input type="text" placeholder="Username" name="username" role="presentation" />
+    <div class="login-page">
+        <div class="background">
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <form action="/login" autocomplete="off" method="post">
+            <h3>MoviesHub Login</h3>
 
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" name="password" autocomplete="new-password">
+            <label for="username">Username</label>
+            <input type="text" placeholder="Username" name="username" role="presentation" />
 
-        <button type="submit">Log In</button>
-    </form>
+            <label for="password">Password</label>
+            <input type="password" placeholder="Password" name="password" autocomplete="new-password">
 
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+    
    	<script>
+        const logo = document.querySelector("#logo");
+        const loginForm = document.querySelector(".login-page");
+        setTimeout(showLoginForm, 3000);
+
+        function showLoginForm() {
+            logo.style.display = "none";
+            var link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = "static/login.css";
+            document.head.appendChild(link);
+            setTimeout(function() {
+                loginForm.style.display = "block";
+            }, 70);
+        }
+
+
 	    if ( window.history.replaceState ) {
 		        window.history.replaceState( null, null, window.location.href );
 		    }

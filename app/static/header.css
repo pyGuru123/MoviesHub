@@ -21,7 +21,8 @@ nav {
 }
 
 .logo {
-	margin-left: -10px;
+	margin-left: -20px;
+	padding-top: 10px;
 }
 
 .logo img {
@@ -31,7 +32,7 @@ nav {
 }
 
 .menu {
-	display: none;
+	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
@@ -39,9 +40,10 @@ nav {
 	height: 100vh;
 	position: fixed;
 	top: 0;
-	right: 0;
+	right: -30%;
 	z-index: 100;
 	background-color: var(--color2);
+	transition: all 0.5s ease-in-out;
 }
 
 .menu li {
@@ -52,11 +54,9 @@ nav {
 	display: inline-block;
 	text-decoration: none;
 	color: var(--color1);
-	text-align: center;
 	transition: 0.15s ease-in-out;
 	position: relative;
 	text-transform: uppercase;
-	padding-top: 3px;
 }
 
 .menu li a::after {
@@ -84,14 +84,21 @@ nav {
 	top: 50%;
 	right: 20px;
 	transform: translateY(-50%);
-	z-index: 200;
+	z-index: 10;
 	font-size: 1.5rem;
 }
 
 .close-menu {
 	top: 35px;
 	right: 20px;
-/*	transform: translateY(-50%);*/
 	display: none;
 	font-size: 1.6rem;
+}
+
+.user-text {
+	top: 42px;
+	left: 20px;
+	position: absolute;
+	color: var(--color1);
+	font-size: 1.1rem;
 }
