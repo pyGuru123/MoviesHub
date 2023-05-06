@@ -24,11 +24,14 @@ PASSWORD = os.getenv("PASSWORD")
 @app.route("/")
 @app.route("/index")
 def index():
-    if not session.get("userid"):
-        return redirect("/login")
+    # if not session.get("userid"):
+    #     return redirect("/login")
 
-    return render_template("index.html")
+    return render_template("logo.html")
 
+@app.route("/search")
+def search():
+    return render_template("search.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
