@@ -1,0 +1,19 @@
+*, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    min-height: 100vh;
+    background-repeat: no-repeat;
+}
+
+.form-div {
+    margin-bottom: 100px;
+}
+
+.search-icon {
+    transform: translate(0, -10px);
+}

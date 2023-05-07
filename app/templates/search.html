@@ -1,5 +1,29 @@
 {% extends "layout.html" %}
 
 {% block stylesheet %}
-	<link rel="stylesheet" href="static/index.css">
+	<link rel="stylesheet" href="static/css/search.css">
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block content %}
+	<div class="row text-center mt-4">
+        <p class="fs-5 col-12">Download your favorite movies for free</p>
+    </div>
+
+	<form action="/search" method="post">
+        <div class="row form-div" style="margin-top: 20px;">
+            <div class="col-1"></div>
+            <label for="moviename" class="col-2 col-form-label text-end">MovieName</label>
+            <div class="col-6">
+                <input type="text" placeholder="pathaan" class="form-control" id="moviename" name="moviename">
+            </div>
+            <div class="col-1">
+                <button type="submit" class="btn search-icon text-start">
+                    <img src="{{url_for('static', filename='search.png')}}">
+                </button>
+            </div>
+        </div>
+    </form>
 {% endblock %}

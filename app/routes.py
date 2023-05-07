@@ -22,21 +22,20 @@ USERID = os.getenv("USERID")
 PASSWORD = os.getenv("PASSWORD")
 
 @app.route("/")
-@app.route("/index")
 def index():
-    # if not session.get("userid"):
-    #     return redirect("/login")
+    if session.get("userid"):
+        return redirect("/upload")
 
     return render_template("logo.html")
 
 @app.route("/search")
-def search():
+def search_movie():
     return render_template("search.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if session.get("userid"):
-        return redirect("/index")
+        return redirect("upload")
 
     if request.method == "POST":
         userid = request.form.get("username")
@@ -46,17 +45,28 @@ def login():
             session["userid"] = userid
             session["password"] = password
 
-            flash(f"Hello Admin, You are now loggedin", "success")
-            return redirect("/index")
+            flash(f"You are now logged in as MoviesHub Admin", "success")
+            return redirect("/upload")
     return render_template("login.html")
-
 
 @app.route("/logout")
 def logout():
     session.pop("userid")
     session.pop("username", None)
-    return redirect("/login")
+    return redirect("/search")
 
+@app.route("/upload")
+def upload_movie():
+    if not session.get("userid"):
+        return redirect("/login")
+
+    return render_template("upload.html")
+
+@app.route("/update", methods=["GET", "POST"])
+def update_posts():
+    download_posts()
+    flash(f"Posts Updated successfully", "success")
+    return redirect("/upload")
 
 @app.route("/movieurl", methods=["GET", "POST"])
 def movieurl():
@@ -67,12 +77,6 @@ def movieurl():
 
         name = name.replace(" ", "+")
         return jsonify({"url": get_movie_url(name, url)})
-
-@app.route("/update", methods=["GET", "POST"])
-def update_posts():
-    download_posts()
-    return redirect("/index")
-
 
 @app.route("/postbot", methods=["GET", "POST"])
 def postbot():
@@ -106,21 +110,21 @@ def postbot():
 
         asyncio.run(send_post(data))
 
-    return redirect("/index")
+    return redirect("/upload")
 
-@app.route("/newmovie")
-def newmovie():
-    movie = Movie(
-        img_url="https://www.bollywoodhungama.com/wp-content/uploads/2023/01/Pathaan-2-10.jpg",
-        caption="pathann webrip",
-        text480p="480p 300mb",
-        url480p="hello123",
-        text720p="",
-        url720p="",
-        text1080p="",
-        url1080p="")
+# @app.route("/newmovie")
+# def newmovie():
+#     movie = Movie(
+#         img_url="https://www.bollywoodhungama.com/wp-content/uploads/2023/01/Pathaan-2-10.jpg",
+#         caption="pathann webrip",
+#         text480p="480p 300mb",
+#         url480p="hello123",
+#         text720p="",
+#         url720p="",
+#         text1080p="",
+#         url1080p="")
 
-    movie.save()
+#     movie.save()
 
 # @app.route("/forward")
 # def forwardd_movies():
