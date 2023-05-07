@@ -57,3 +57,9 @@ span {
     transform: skewX(21.5deg);
     box-shadow: 0 0 30px black;
 }
+
+@media only screen and (max-width: 768px) {
+    span {
+        display: none;
+    }
+}

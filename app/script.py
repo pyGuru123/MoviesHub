@@ -2,11 +2,14 @@ import os
 import json
 import asyncio
 import telegram
+from bson import ObjectId
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.error import TelegramError
 from app.utils import fetch_posts, random_post, aeshash
 
+from app import collection_obj
 from app.model import Movie
+# from pymongo import MongoClient
 
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -45,6 +48,16 @@ def insert_to_db(data):
 
     movie = Movie(img_url, caption, text480p, url480p, text720p, url720p, text1080p, url1080p)
     movie.save()
+
+def convert_document(document):
+    document['_id'] = str(document['_id'])
+    return document
+
+def fetch_from_db(name):
+    pattern = f".*{name}.*"
+    query = {"caption": {"$regex": pattern, "$options": "i"}}
+    matching_documents = collection_obj.find(query)
+    return [convert_document(document) for document in matching_documents]
 
 
 async def send_post(data):

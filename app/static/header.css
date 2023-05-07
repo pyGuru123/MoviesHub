@@ -102,3 +102,9 @@ nav {
 	color: var(--color1);
 	font-size: 1.1rem;
 }
+
+/*@media only screen and (max-width: 768px) {
+  .menu {
+    width: 70%;
+  }
+}*/

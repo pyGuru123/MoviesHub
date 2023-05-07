@@ -14,7 +14,7 @@ from flask import (
 
 from app import app, db
 from app.model import Movie
-from app.script import get_movie_url, send_post
+from app.script import get_movie_url, fetch_from_db, send_post
 from app.utils import download_posts
 from app.forwarder import forward
 
@@ -27,10 +27,6 @@ def index():
         return redirect("/upload")
 
     return render_template("logo.html")
-
-@app.route("/search")
-def search_movie():
-    return render_template("search.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -55,28 +51,20 @@ def logout():
     session.pop("username", None)
     return redirect("/search")
 
+@app.route("/search")
+def search_movie():
+    return render_template("search.html")
+
+@app.route("/movie/<name>")
+def get_movie(name):
+    return jsonify(fetch_from_db(name) )
+
 @app.route("/upload")
 def upload_movie():
     if not session.get("userid"):
         return redirect("/login")
 
     return render_template("upload.html")
-
-@app.route("/update", methods=["GET", "POST"])
-def update_posts():
-    download_posts()
-    flash(f"Posts Updated successfully", "success")
-    return redirect("/upload")
-
-@app.route("/movieurl", methods=["GET", "POST"])
-def movieurl():
-    if request.method == "POST":
-        data = request.get_json()
-        name = data["name"]
-        url = data["hash"]
-
-        name = name.replace(" ", "+")
-        return jsonify({"url": get_movie_url(name, url)})
 
 @app.route("/postbot", methods=["GET", "POST"])
 def postbot():
@@ -111,6 +99,24 @@ def postbot():
         asyncio.run(send_post(data))
 
     return redirect("/upload")
+
+@app.route("/update", methods=["GET", "POST"])
+def update_posts():
+    download_posts()
+    flash(f"Posts Updated successfully", "success")
+    return redirect("/upload")
+
+@app.route("/movieurl", methods=["GET", "POST"])
+def movieurl():
+    if request.method == "POST":
+        data = request.get_json()
+        name = data["name"]
+        url = data["hash"]
+
+        name = name.replace(" ", "+")
+        return jsonify({"url": get_movie_url(name, url)})
+
+# @
 
 # @app.route("/newmovie")
 # def newmovie():

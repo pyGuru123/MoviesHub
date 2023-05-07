@@ -14,7 +14,7 @@
 
     			<li><a href="{{url_for('search_movie')}}"> Search Movie </a></li>
     			<li><a href="#"> Request a movie</a></li>
-    			<li><a href="https://docs.google.com/spreadsheets/d/1qofdifx00CyDbtc1Gnq7pMhd0F7KJ3e2AWSGv4MUNWQ/edit?usp=sharing"> Check Database </a></li>
+    			<li><a href="https://docs.google.com/spreadsheets/d/1qofdifx00CyDbtc1Gnq7pMhd0F7KJ3e2AWSGv4MUNWQ/edit?usp=sharing" target="_blank"> Check Database </a></li>
 
                 {% if session.get("userid") %}
                     <li><a href="{{url_for('update_posts')}}"> Update Posts </a></li>
