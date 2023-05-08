@@ -17,3 +17,27 @@ body {
 .search-icon {
     transform: translate(0, -10px);
 }
+
+.results {
+    margin-bottom: 20px;
+}
+
+.result-row {
+   margin-bottom: 50px;
+/*   border: 1px solid black;*/
+   border-radius: 8px; 
+   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
+   padding: 10px;
+   padding-left: 20px;
+}
+
+.title {
+    font-size: 3.2rem;
+}
+
+.thumbnail {
+    max-width: 100%;
+    border-radius: 8px;
+/*    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;*/
+}

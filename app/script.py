@@ -1,4 +1,5 @@
 import os
+import re
 import json
 import asyncio
 import telegram
@@ -53,11 +54,28 @@ def convert_document(document):
     document['_id'] = str(document['_id'])
     return document
 
+def get_movie_detail(caption):
+    if caption:
+        pattern = r'\d{4}'
+        year = re.findall(pattern, caption)[-1]
+        name = caption.split(year)[0].strip("(").strip()
+        detail = (year + caption.split(year)[1].strip(")")).strip()
+        return name, detail
+
 def fetch_from_db(name):
     pattern = f".*{name}.*"
     query = {"caption": {"$regex": pattern, "$options": "i"}}
     matching_documents = collection_obj.find(query)
-    return [convert_document(document) for document in matching_documents]
+
+    results = []
+    for document in matching_documents:
+        document = convert_document(document)
+        name, detail = get_movie_detail(document["caption"])
+        document["name"] = name
+        document["detail"] = detail
+        results.append(document)
+
+    return results
 
 
 async def send_post(data):

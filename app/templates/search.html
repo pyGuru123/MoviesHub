@@ -12,7 +12,7 @@
         <p class="fs-5 col-12">Download your favorite movies for free</p>
     </div>
 
-	<form action="/search" method="post">
+	<form>
         <div class="row form-div" style="margin-top: 20px;">
             <div class="col-1"></div>
             <label for="moviename" class="col-2 col-form-label text-end">MovieName</label>
@@ -26,4 +26,58 @@
             </div>
         </div>
     </form>
+
+    <div class="results">
+        <div class="row row-template">
+             <div class="col-1"></div>
+             <div class="col-10 result-row">
+                <div class="row">
+                    <div class="col-6">
+                    <span class="title">Pathaan</span><br/>
+                    <span class="detail">2022 WebRip Hindi</span>
+                </div>
+                <div class="col-6">
+                    <img class="thumbnail" src="https://m.economictimes.com/thumb/msid-97434971,width-1280,height-720,resizemode-4,imgsize-183376/pathaan.jpg"/>
+                </div>
+                </div>
+             </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    
+    const container = document.querySelector(".results");
+    const rowTemplate = document.querySelector(".row-template");
+    container.innerHTML = ""
+
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function(e){
+        e.preventDefault();
+        var input = form.querySelector("#moviename");
+        console.log(`/movie/${input.value}`)
+        fetch(`/movie/${input.value}`)
+        .then(data => data.json())
+        .then(results => populateData(results));
+    });
+
+    function populateData(data) {
+        container.innerHTML = "";
+        data.forEach(result => {
+        const newRow = rowTemplate.cloneNode(true);
+
+        const title = newRow.querySelector(".title");
+        const detail = newRow.querySelector(".detail");
+        const thumbnail = newRow.querySelector(".thumbnail");
+
+        title.textContent = result.name;
+        detail.textContent = result.detail;
+        thumbnail.src = result.img_url;
+
+        container.appendChild(newRow);
+        })
+    }
+
+    console.log("done");
 {% endblock %}
