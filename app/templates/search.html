@@ -36,9 +36,15 @@
                     <span class="title">Pathaan</span><br/>
                     <span class="detail">2022 WebRip Hindi</span>
 
-                    <div><button class="btn btn-primary 480p first">480p 500mb</button></div>
-                    <div><button class="btn btn-primary 720p">720p 1.2gb</button></div>
-                    <div><button class="btn btn-primary 1080p">1080p 2.7gb</button></div>
+                    <div>
+                        <button class="btn btn-primary 480p first">480p 500mb</button>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary 720p">720p 1.2gb</button>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary 1080p">1080p 2.7gb</button>
+                    </div>
                 </div>
                 
                 <div class="col-6">
@@ -67,6 +73,17 @@
         .then(results => populateData(results));
     });
 
+    function download(url) {
+        var hash = url.split("url=")[1];
+        var unhash = "";
+        for (var i=0; i<hash.length; i++) {
+            ascii = hash.charCodeAt(i) - 1;
+            unhash += String.fromCharCode(ascii);
+        }
+        console.log(unhash);
+        window.location.href = unhash;
+    }
+
     function populateData(data) {
         container.innerHTML = "";
         data.forEach(result => {
@@ -84,13 +101,21 @@
         thumbnail.src = result.img_url;
         if (result.url480p) {
             btn480p.textContent = result.text480p;
+            btn480p.onclick = () => download(result.url480p);
         }
+        else{ btn480p.style.display = "none"; }
+
         if (result.url720p) {
             btn720p.textContent = result.text720p;
+            btn720p.onclick = () => download(result.url720p);
         }
+        else{ btn720p.style.display = "none"; }
+
         if (result.url1080p) {
             btn1080p.textContent = result.text1080p;
+            btn1080p.onclick = () => download(result.url1080p);
         }
+        else{ btn1080p.style.display = "none"; }
 
         container.appendChild(newRow);
         })
