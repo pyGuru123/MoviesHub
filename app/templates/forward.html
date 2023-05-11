@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="static/css/index.css">
+{% endblock %}
+
+{% block content %}
+	{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{category}}">
+                    <p>{{message}}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+	<div class="forward-movie">
+		<form name="movieforwarder" action="/forward" method="post" autocomplete="off">
+			<fieldset class="border p-4">
+			   <legend  class="float-none w-auto p-2">Movie Forwarder</legend>
+			
+				<div class="mb-4 row">
+					<div class="col-6">
+						<label for="from_" class="form-label">From Message Id</label>
+					    <input type="number" class="form-control from_" name="from_" required="required">
+					</div>
+					<div class="col-6">
+						<label for="to_" class="form-label">To Message Id</label>
+					    <input type="number" class="form-control to_" name="to_" required="required">
+					</div>
+				</div>
+
+				<div class="mb-4 mt-4 row form-check">
+				    <div class="col-6">
+				    	<input class="form-check-input" type="checkbox" value="true" id="files" name="files">
+						<label class="form-check-label" for="flexCheckDefault">
+						    Files Channel
+						</label>
+				    	
+				    </div>
+				    <div class="col-6">
+				    	<input class="form-check-input" type="checkbox" value="true" id="dump" name="dump">
+						<label class="form-check-label" for="flexCheckDefault">
+						    Dump Channel
+						</label>
+				    </div>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Forward</button>
+
+			</fieldset>
+		</form>
+	</div>
+{% endblock %}

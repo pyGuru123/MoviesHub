@@ -116,6 +116,27 @@ def movieurl():
         name = name.replace(" ", "+")
         return jsonify({"url": get_movie_url(name, url)})
 
+@app.route("/forward", methods=["GET", "POST"])
+def forward_movies():
+    count = 0
+    if request.method == "POST":
+        to_ = int(request.form.get("to_"))
+        from_ = int(request.form.get("from_"))
+        files_channel = bool(request.form.get("files"))
+        dump_channel = bool(request.form.get("dump"))
+
+        count = asyncio.run(forward(from_, to_, files_channel, dump_channel))
+        
+        if count > 0:
+            flash(f"{count} Movies forwarded successfully", "success")
+        else:
+            flash(f"Unable to forward Movies", "danger")
+
+        return redirect("/forward")
+
+    return render_template("forward.html")
+
+
 # @
 
 # @app.route("/newmovie")
@@ -132,9 +153,6 @@ def movieurl():
 
 #     movie.save()
 
-# @app.route("/forward")
-# def forwardd_movies():
-#     asyncio.run(forward())
 
 # @app.route("/allmovies", methods=["GET", "POST"])
 # def allmovies():

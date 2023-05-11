@@ -19,6 +19,7 @@
                 {% if session.get("userid") %}
                     <li><a href="{{url_for('update_posts')}}"> Update Posts </a></li>
                     <li><a href="{{url_for('upload_movie')}}"> Upload Movie </a></li>
+                    <li><a href="{{url_for('forward_movies')}}"> Forward Movie </a></li>
                     <span class="user-text">Hello Admin</span>
                 {% endif %}
 
