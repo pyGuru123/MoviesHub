@@ -35,7 +35,12 @@
                     <div class="col-6">
                     <span class="title">Pathaan</span><br/>
                     <span class="detail">2022 WebRip Hindi</span>
+
+                    <div><button class="btn btn-primary 480p first">480p 500mb</button></div>
+                    <div><button class="btn btn-primary 720p">720p 1.2gb</button></div>
+                    <div><button class="btn btn-primary 1080p">1080p 2.7gb</button></div>
                 </div>
+                
                 <div class="col-6">
                     <img class="thumbnail" src="https://m.economictimes.com/thumb/msid-97434971,width-1280,height-720,resizemode-4,imgsize-183376/pathaan.jpg"/>
                 </div>
@@ -70,10 +75,22 @@
         const title = newRow.querySelector(".title");
         const detail = newRow.querySelector(".detail");
         const thumbnail = newRow.querySelector(".thumbnail");
+        const btn480p = newRow.getElementsByClassName("480p")[0];
+        const btn720p = newRow.getElementsByClassName("720p")[0];
+        const btn1080p = newRow.getElementsByClassName("1080p")[0];
 
         title.textContent = result.name;
         detail.textContent = result.detail;
         thumbnail.src = result.img_url;
+        if (result.url480p) {
+            btn480p.textContent = result.text480p;
+        }
+        if (result.url720p) {
+            btn720p.textContent = result.text720p;
+        }
+        if (result.url1080p) {
+            btn1080p.textContent = result.text1080p;
+        }
 
         container.appendChild(newRow);
         })
