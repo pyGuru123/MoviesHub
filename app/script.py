@@ -10,7 +10,6 @@ from app.utils import fetch_posts, random_post, aeshash
 
 from app import collection_obj
 from app.model import Movie
-# from pymongo import MongoClient
 
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -97,7 +96,7 @@ async def send_post(data):
     elif len(buttons) == 3:
         reply_markup = InlineKeyboardMarkup([row1, row2])
 
-    chat_ids = [PUBLIC_CHANNEL, PRIVATE_CHANNEL, BIN_CHANNEL]
+    chat_ids = [PUBLIC_CHANNEL, PRIVATE_CHANNEL]
 
     for _id in chat_ids:
         await bot.send_photo(
