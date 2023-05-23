@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>MoviesHub</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="static/css/logo.css">
-</head>
-<body>
-    <div id="logo">
-        <div class="netflix">
-        </div>
-        <div class="rightb">
-        </div>
-        <span>oviesHub</span>
-    </div>
-    
-   	<script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoviesHUB</title>
+    <link rel="icon" type="image/x-icon" href="../static/logo.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="../static/css/logo.css" />
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+
+    <script>
         const logo = document.querySelector("#logo");
         setTimeout(openSearchPage, 3000);
 
@@ -25,9 +33,39 @@
             window.location.href = '/search'
         }
 
-	    if ( window.history.replaceState ) {
-	        window.history.replaceState( null, null, window.location.href );
-	    }
-	</script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="logo">
+        <div id="main">
+            <div class="primary">
+                <img id="image-m" src="../static/logo.png" alt="#" />
+                <p id="logo-name">ovies</p>
+            </div>
+            <div id="base-name">
+                <div class="base-name-1">
+                    <p class="second-letter">B</p>
+                    <p class="second-letter">U</p>
+                    <p class="first-letter">H</p>
+                </div>
+                <div class="base-name-2">
+                    <p class="first-letter">H</p>
+                    <p class="third-letter">B</p>
+                    <p class="second-letter">U</p>
+                </div>
+                <div class="base-name-3">
+                    <p class="second-letter">U</p>
+                    <p class="first-letter">H</p>
+                    <p class="third-letter">B</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
