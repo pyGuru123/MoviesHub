@@ -28,6 +28,10 @@ def index():
 
     return render_template("logo.html")
 
+@app.route("/home")
+def home():
+    return render_template("includes/index.html")
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if session.get("userid"):
