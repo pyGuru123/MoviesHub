@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible"
+         content="IE=edge">
+      <meta name="viewport"
+         content="width=device-width, initial-scale=1.0">
+      <title>movie-hub</title>
+      <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+      <link rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+         crossorigin="anonymous"
+         referrerpolicy="no-referrer" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+         integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+         crossorigin="anonymous"
+         referrerpolicy="no-referrer"></script>
+      <link rel="stylesheet"
+         href="../../static/css/style.css">
+   </head>
+   <body>
+      <header>
+         <nav class="-top-nav">
+            <div class="logo">
+               <a href="/">
+               <img class="logo-image"
+                  src="../../static/logo.png"
+                  alt="logo">
+               <span>
+               ovies hub
+               </span>
+               </a>
+            </div>
+            <div class="-search">
+               <input type="text"
+                  name="search"
+                  placeholder="Search">
+               <button type="submit"
+                  name="submit-search">Search</button>
+            </div>
+            <div class="-navigation">
+               <div class="hamburger">
+                  <i class="fa-sharp fa-solid fa-bars"></i>
+               </div>
+               <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/">About</a></li>
+                  <li><a href="/">Admin</a></li>
+                  <li><a href="/">Join us</a></li>
+                  <li><a href="/">Sign up</a></li>
+               </ul>
+            </div>
+         </nav>
+         <div class="-secondary-top-nav">
+            <div class="-search">
+               <input type="text"
+                  name="search"
+                  placeholder="Search">
+               <button type="submit"
+                  name="submit-search">Search</button>
+            </div>
+         </div>
+         <div class="categories">
+            <ul>
+               <li id="categories-option-Movie"><button class="categories-option">Movies</i></button></li>
+               <li id="categories-option-Series"><button class="categories-option">Series <i
+                  class="fa fa-arrow-down"
+                  aria-hidden="true"></i></button></li>
+               <li id="categories-option-Genre"><button class="categories-option">Genre <i class="fa fa-arrow-down"
+                  aria-hidden="true"></i></button></li>
+               <li id="categories-option-Year"><button class="categories-option">Year <i class="fa fa-arrow-down"
+                  aria-hidden="true"></i></button></li>
+            </ul>
+         </div>
+         <div class="genere-selection">
+            <ul>
+               <li><a href="/">Action</a></li>
+               <li><a href="/">Adventure</a></li>
+               <li><a href="/">Comedy</a></li>
+               <li><a href="/">Crime</a></li>
+               <li><a href="/">Drama</a></li>
+               <li><a href="/">Fantasy</a></li>
+               <li><a href="/">Historical</a></li>
+               <li><a href="/">Horror</a></li>
+               <li><a href="/">Mystery</a></li>
+               <li><a href="/">Philosophical</a></li>
+               <li><a href="/">Political</a></li>
+               <li><a href="/">Romance</a></li>
+               <li><a href="/">Saga</a></li>
+               <li><a href="/">Satire</a></li>
+               <li><a href="/">Science fiction</a></li>
+               <li><a href="/">Social</a></li>
+               <li><a href="/">Speculative</a></li>
+               <li><a href="/">Thriller</a></li>
+               <li><a href="/">Urban</a></li>
+               <li><a href="/">Western</a></li>
+            </ul>
+         </div>
+         <div class="series-selection">
+            <ul>
+               <li><a hred="/">2022 series</a></li>
+               <li><a hred="/">K-Drama</a></li>
+               <li><a hred="/">Action Series</a></li>
+               <li><a hred="/">Adventure Series</a></li>
+               <li><a hred="/">Animation Series</a></li>
+               <li><a hred="/">Comedy Series</a></li>
+               <li><a hred="/">Crime Series</a></li>
+               <li><a hred="/">Drama Series</a></li>
+               <li><a hred="/">Horror Series</a></li>
+               <li><a hred="/">Mystery Series</a></li>
+               <li><a hred="/">Romance Series</a></li>
+               <li><a hred="/">Sci-Fi Series</a></li>
+               <li><a hred="/">Thriller Series</a></li>
+               <li><a hred="/">Fantasy Series</a></li>
+               <li><a hred="/">Teen Drama Series</a></li>
+               <li><a hred="/">Sport Series</a></li>
+               <li><a hred="/">Animated Web Series</a></li>
+               <li><a hred="/">Western Drama Series</a></li>
+               <li><a hred="/">Documentary Series</a></li>
+               <li><a hred="/">Family Series</a></li>
+               <li><a hred="/">Sitcom Series</a></li>
+            </ul>
+         </div>
+         <div class="year-selection">
+            <ul>
+               <li><a href="/">2001</a></li>
+               <li><a href="/">2002</a></li>
+               <li><a href="/">2003</a></li>
+               <li><a href="/">2004</a></li>
+               <li><a href="/">2005</a></li>
+               <li><a href="/">2006</a></li>
+               <li><a href="/">2007</a></li>
+               <li><a href="/">2008</a></li>
+               <li><a href="/">2009</a></li>
+               <li><a href="/">2011</a></li>
+               <li><a href="/">2012</a></li>
+               <li><a href="/">2013</a></li>
+               <li><a href="/">2014</a></li>
+               <li><a href="/">2015</a></li>
+               <li><a href="/">2016</a></li>
+               <li><a href="/">2017</a></li>
+               <li><a href="/">2018</a></li>
+               <li><a href="/">2019</a></li>
+               <li><a href="/">2020</a></li>
+               <li><a href="/">2021</a></li>
+               <li><a href="/">2022</a></li>
+               <li><a href="/">2023</a></li>
+            </ul>
+         </div>
+      </header>
+      <main>
+         <div class="main-component">
+            <h1 class="heading">Movies section</h1>
+            <div class="movie-component">
+               <div class="col-1">
+                  <div class="movie-poster-wrap">
+                     <img src="https://www.themoviedb.org/t/p/original/qMxAmzGQO722q0UlssCOPhrXmvX.jpg"
+                        alt=""
+                        srcset="">
+                  </div>
+                  <div class="movie-genere-set">
+                     <ul>
+                        <li class="genere-indicator genere-action">action</li>
+                        <li class="genere-indicator genere-adventure">adventure</li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="col-2">
+                  <div class="movie-title">
+                     Avengers - Chads in costume
+                  </div>
+                  <div class="movie-description">
+                     Avengers is an awesome movie.
+                     its characters and story is very good.
+                     its characters and story is very good.
+                     its characters and story is very good.
+                  </div>
+                  <div class="movie-detials">
+                     <table>
+                        <tr>
+                           <td>Release Date</td>
+                           <td>2021</td>
+                        </tr>
+                        <tr>
+                           <td>Rating</td>
+                           <td>8.5</td>
+                        </tr>
+                        <tr>
+                           <td>Language</td>
+                           <td>English</td>
+                        </tr>
+                        <tr>
+                           <td>Quality</td>
+                           <td>HD</td>
+                        </tr>
+                        <tr>
+                           <td>Director</td>
+                           <td>John Doe</td>
+                        </tr>
+                        <tr>
+                           <td>Cast</td>
+                           <td>John Doe</td>
+                        </tr>
+                     </table>
+                  </div>
+                  <div class="movie-actions">
+                     <a href="/">Add to wishlist</a>
+                     <a href="/">Download</a>
+                  </div>
+               </div>
+            </div>
+            <h2 class="heading">More like these</h2>
+            <div class="recommendation-list">
+               <div class="movie-recommendation">
+                  <div class="movie-poster-wrapper">
+                     <img src="https://www.themoviedb.org/t/p/original/qMxAmzGQO722q0UlssCOPhrXmvX.jpg"
+                        alt=""
+                        srcset="">
+                  </div>
+                  <div class="movie-details">
+                     <h4>Avengers - chads in costume</h4>
+                     <table>
+                        <tr>
+                           <td><b>Release Date:</b>
+                              <span>2021</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Rating:</b>
+                              <span>8.5</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Language:</b>
+                              <span>English</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Quality:</b>
+                              <span>HD</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Genere:</b>
+                              <span>action, adventure</span>
+                           </td>
+                        </tr>
+                     </table>
+                     <div class="movie-actions">
+                        <a href="/">Add to wishlist</a>
+                        <a href="/">Download</a>
+                     </div>
+                  </div>
+               </div>
+               <div class="movie-recommendation">
+                  <div class="movie-poster-wrapper">
+                     <img src="https://www.themoviedb.org/t/p/original/qMxAmzGQO722q0UlssCOPhrXmvX.jpg"
+                        alt=""
+                        srcset="">
+                  </div>
+                  <div class="movie-details">
+                     <h4>Avengers - chads in costume</h4>
+                     <table>
+                        <tr>
+                           <td><b>Release Date:</b>
+                              <span>2021</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Rating:</b>
+                              <span>8.5</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Language:</b>
+                              <span>English</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Quality:</b>
+                              <span>HD</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Genere:</b>
+                              <span>action, adventure</span>
+                           </td>
+                        </tr>
+                     </table>
+                     <div class="movie-actions">
+                        <a href="/">Add to wishlist</a>
+                        <a href="/">Download</a>
+                     </div>
+                  </div>
+               </div>
+               <div class="movie-recommendation">
+                  <div class="movie-poster-wrapper">
+                     <img src="https://www.themoviedb.org/t/p/original/qMxAmzGQO722q0UlssCOPhrXmvX.jpg"
+                        alt=""
+                        srcset="">
+                  </div>
+                  <div class="movie-details">
+                     <h4>Avengers - chads in costume</h4>
+                     <table>
+                        <tr>
+                           <td><b>Release Date:</b>
+                              <span>2021</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Rating:</b>
+                              <span>8.5</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Language:</b>
+                              <span>English</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Quality:</b>
+                              <span>HD</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Genere:</b>
+                              <span>action, adventure</span>
+                           </td>
+                        </tr>
+                     </table>
+                     <div class="movie-actions">
+                        <a href="/">Add to wishlist</a>
+                        <a href="/">Download</a>
+                     </div>
+                  </div>
+               </div>
+               <div class="movie-recommendation">
+                  <div class="movie-poster-wrapper">
+                     <img src="https://www.themoviedb.org/t/p/original/qMxAmzGQO722q0UlssCOPhrXmvX.jpg"
+                        alt=""
+                        srcset="">
+                  </div>
+                  <div class="movie-details">
+                     <h4>Avengers - chads in costume</h4>
+                     <table>
+                        <tr>
+                           <td><b>Release Date:</b>
+                              <span>2021</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Rating:</b>
+                              <span>8.5</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Language:</b>
+                              <span>English</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Quality:</b>
+                              <span>HD</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Genere:</b>
+                              <span>action, adventure</span>
+                           </td>
+                        </tr>
+                     </table>
+                     <div class="movie-actions">
+                        <a href="/">Add to wishlist</a>
+                        <a href="/">Download</a>
+                     </div>
+                  </div>
+               </div>
+               <div class="movie-recommendation">
+                  <div class="movie-poster-wrapper">
+                     <img src="https://www.themoviedb.org/t/p/original/qMxAmzGQO722q0UlssCOPhrXmvX.jpg"
+                        alt=""
+                        srcset="">
+                  </div>
+                  <div class="movie-details">
+                     <h4>Avengers - chads in costume</h4>
+                     <table>
+                        <tr>
+                           <td><b>Release Date:</b>
+                              <span>2021</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Rating:</b>
+                              <span>8.5</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Language:</b>
+                              <span>English</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Quality:</b>
+                              <span>HD</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Genere:</b>
+                              <span>action, adventure</span>
+                           </td>
+                        </tr>
+                     </table>
+                     <div class="movie-actions">
+                        <a href="/">Add to wishlist</a>
+                        <a href="/">Download</a>
+                     </div>
+                  </div>
+               </div>
+               <div class="movie-recommendation">
+                  <div class="movie-poster-wrapper">
+                     <img src="https://www.themoviedb.org/t/p/original/qMxAmzGQO722q0UlssCOPhrXmvX.jpg"
+                        alt=""
+                        srcset="">
+                  </div>
+                  <div class="movie-details">
+                     <h4>Avengers - chads in costume</h4>
+                     <table>
+                        <tr>
+                           <td><b>Release Date:</b>
+                              <span>2021</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Rating:</b>
+                              <span>8.5</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Language:</b>
+                              <span>English</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Quality:</b>
+                              <span>HD</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <b>Genere:</b>
+                              <span>action, adventure</span>
+                           </td>
+                        </tr>
+                     </table>
+                     <div class="movie-actions">
+                        <a href="/">Add to wishlist</a>
+                        <a href="/">Download</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="ads">
+            <h4>ads section:</h4>
+            <p>ads are important for us to keep this website alive. so please support us by clicking on ads.</p>
+         </div>
+      </main>
+   </body>
+   <script>
+      $(document).ready(function () {
+          $('.hamburger').click(function () {
+              $('.hamburger').toggleClass('active');
+              $('.-navigation ul').toggleClass('active');
+          });
+          $('#categories-option-Genre').click(function () {
+              $('#categories-option-Genere').toggleClass('active');
+              $('.genere-selection').slideToggle();
+              $('.series-selection').slideUp();
+              $('.year-selection').slideUp();
+          });
+          $('#categories-option-Series').click(function () {
+              $('#categories-option-Series').toggleClass('active');
+              $('.series-selection').slideToggle();
+              $('.genere-selection').slideUp();
+              $('.year-selection').slideUp();
+          });
+          $('#categories-option-Year').click(function () {
+              $('#categories-option-Year').toggleClass('active');
+              $('.year-selection').slideToggle();
+              $('.genere-selection').slideUp();
+              $('.series-selection').slideUp();
+          });
+      })
+   </script>
+</html>
