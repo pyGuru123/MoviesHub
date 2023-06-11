@@ -33,6 +33,7 @@ async def forward(from_, to_, files_channel, dump_channel):
                     message_id=message_id
                 )
 
+            save_message_to_db(message)
             count += 1
                 
             time.sleep(1)
@@ -42,31 +43,25 @@ async def forward(from_, to_, files_channel, dump_channel):
     return count
 
 def save_message_to_db(message):
-    img_url = ""
-    caption = message.caption
-    id_ = message.message_id
-    text480p, url480p, text720p, url720p, text1080p, url1080p = "", "", "", "", "", ""
-    rows = message.reply_markup.inline_keyboard
-    for row in rows:
-        for button in row:
-            if "480" in button.text: 
-                text480p, url480p = button.text, button.url
-            if "720" in button.text: 
-                text720p, url720p = button.text, button.url
-            if "1080" in button.text: 
-                text1080p, url1080p = button.text, button.url
+    video = False
 
-    print(caption)
-    movie = Movie(
-        img_url=img_url,
-        caption=caption,
-        text480p=text480p,
-        url480p=url480p,
-        text720p=text720p,
-        url720p=url720p,
-        text1080p=text1080p,
-        url1080p=url1080p)
+    if message.video:
+        caption = message.caption or message.video.file_name
+        size = get_file_size(message.video.file_size)
+        channel_id = message.forward_from_chat.id
+        msg_id = message.forward_from_message_id
+        unique_id = message.video.file_unique_id
+        video = True
 
-    movie.save()
+    elif message.document:
+        caption = message.caption or message.document.file_name
+        size = get_file_size(message.document.file_size)
+        channel_id = message.forward_from_chat.id
+        msg_id = message.forward_from_message_id
+        unique_id = message.document.file_unique_id
+        video = True
 
-    # await bot.delete_message(chat_id=chat_id, message_id=id_)
+
+    if video:
+        movie = Movie(caption, size, channel_id, msg_id, unique_id)
+        movie.save()

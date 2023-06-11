@@ -4,26 +4,20 @@ from pymongo import MongoClient
 from app import collection_obj
 
 class Movie:
-    def __init__(self, img_url, caption, text480p, url480p, text720p, url720p, text1080p, url1080p):
-        self.img_url = img_url
+    def __init__(self, caption, size, chat_id, msg_id, file_unique_id):
         self.caption = caption
-        self.text480p = text480p
-        self.url480p  = url480p
-        self.text720p  = text720p
-        self.url720p  = url720p
-        self.text1080p  = text1080p
-        self.url1080p  = url1080p
+        self.size = size
+        self.chat_id  = chat_id
+        self.msg_id  = msg_id
+        self.file_unique_id = file_unique_id
 
     def to_dict(self):
         return {
-            "img_url" : self.img_url,
-	        "caption" : self.caption,
-	        "text480p" : self.text480p,
-	        "url480p" : self.url480p,
-	        "text720p" : self.text720p,
-	        "url720p" : self.url720p,
-	        "text1080p" : self.text1080p,
-	        "url1080p" : self.url1080p
+            "caption" : self.caption,
+            "size" : self.size,
+            "chat_id" : self.chat_id,
+            "message_id" : self.msg_id,
+            "file_unique_id": self.file_unique_id
         }
 
     def save(self):
