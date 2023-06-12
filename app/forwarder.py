@@ -24,30 +24,31 @@ async def forward(from_, to_, files_channel, dump_channel):
     for message_id in range(from_, to_+1):
         try:
             if files_channel:
-                await bot.copy_message(
+                message = await bot.copy_message(
                     chat_id=FILES_CHANNEL,
                     from_chat_id=BIN_CHANNEL,
                     message_id=message_id
                 )
 
             if dump_channel:
-                await bot.copy_message(
+                message = await bot.copy_message(
                     chat_id=DUMP_CHANNEL,
                     from_chat_id=BIN_CHANNEL,
                     message_id=message_id
                 )
 
-            message = await bot.forward_message(
-                chat_id="-1001736615817",
-                from_chat_id=BIN_CHANNEL,
-                message_id=message_id
-            )
+            # message = await bot.forward_message(
+            #     chat_id="-1001736615817",
+            #     from_chat_id=BIN_CHANNEL,
+            #     message_id=message_id
+            # )
+
+            # if message:
+            #     save_message_to_db(message)
+            #     await bot.delete_message(chat_id="-1001736615817", message_id=message.message_id)
 
             if message:
-                save_message_to_db(message)
-                await bot.delete_message(chat_id="-1001736615817", message_id=message.message_id)
-
-            count += 1
+                count += 1
                 
             time.sleep(1)
         except Exception as e:
