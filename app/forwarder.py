@@ -11,29 +11,43 @@ DUMP_CHANNEL = os.getenv("DUMP_CHANNEL")
 
 CHANNELS = [FILES_CHANNEL, DUMP_CHANNEL]
 
+def get_file_size(bytes):
+    if bytes < 1024 ** 3:
+        return f"{bytes / (1024 ** 2):.2f} MB"
+    else:
+        return f"{bytes / (1024 ** 3):.2f} GB"
+
 async def forward(from_, to_, files_channel, dump_channel):
     bot = telegram.Bot(token=BOT_TOKEN)
     print(to_, from_, files_channel, dump_channel)
 
     count = 0
     for message_id in range(from_, to_+1):
-        print(message_id)
         try:
             if files_channel:
-                message = await bot.copy_message(
+                await bot.copy_message(
                     chat_id=FILES_CHANNEL,
                     from_chat_id=BIN_CHANNEL,
                     message_id=message_id
                 )
 
             if dump_channel:
-                message = await bot.copy_message(
+                await bot.copy_message(
                     chat_id=DUMP_CHANNEL,
                     from_chat_id=BIN_CHANNEL,
                     message_id=message_id
                 )
 
-            save_message_to_db(message)
+            message = await bot.forward_message(
+                chat_id=-1001736615817,
+                from_chat_id=BIN_CHANNEL,
+                message_id=message_id
+            )
+            print(message)
+            if message:
+                save_message_to_db(message)
+                await bot.delete_message(chat_id=-1001736615817, message_id=message.message_id)
+
             count += 1
                 
             time.sleep(1)
