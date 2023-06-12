@@ -19,7 +19,6 @@ def get_file_size(bytes):
 
 async def forward(from_, to_, files_channel, dump_channel):
     bot = telegram.Bot(token=BOT_TOKEN)
-    print(to_, from_, files_channel, dump_channel)
 
     count = 0
     for message_id in range(from_, to_+1):
@@ -39,14 +38,14 @@ async def forward(from_, to_, files_channel, dump_channel):
                 )
 
             message = await bot.forward_message(
-                chat_id=-1001736615817,
+                chat_id="-1001736615817",
                 from_chat_id=BIN_CHANNEL,
                 message_id=message_id
             )
-            print(message)
+
             if message:
                 save_message_to_db(message)
-                await bot.delete_message(chat_id=-1001736615817, message_id=message.message_id)
+                await bot.delete_message(chat_id="-1001736615817", message_id=message.message_id)
 
             count += 1
                 
