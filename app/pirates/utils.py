@@ -23,6 +23,8 @@ async def isSubscriberOfMoviesHub(user_id):
         logger.info(isSubscriber.status)
         if isSubscriber.status in ["member", "creator", "admin"]:
             return True
+    except NetworkError as ne:
+        return True
     except Exception as e:
         logger.error(f"{e=}")
         return False
