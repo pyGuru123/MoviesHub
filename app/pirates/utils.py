@@ -20,6 +20,7 @@ pirates_bot = Bot(token=PIRATES_BOT_TOKEN)
 async def isSubscriberOfMoviesHub(user_id):
     try:
         isSubscriber = await pirates_bot.get_chat_member(chat_id=MOVIESHUB_CHANNEL, user_id=user_id)
+        logger.info(isSubscriber.status)
         if isSubscriber.status in ["member", "creator", "admin"]:
             return True
     except Exception as e:
