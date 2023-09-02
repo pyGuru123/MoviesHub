@@ -41,6 +41,40 @@ async def main(request: dict):
         if "@@" in text.strip():
             from_chat_id, message_id = map(int, text.split("@@"))
             await copyFile(chat_id, from_chat_id, message_id)
+        elif text == "next:next":
+            session_token = f"user:{chat_id}"
+            data = await get_user_from_session(session_token)
+            if data:
+                documents, page, reply_id = data
+                reply_markup, page = await getMoviesListKeyboard(documents, page, "next")
+                if reply_markup:
+                    response = await editKeyboard(
+                            chat_id=chat_id,
+                            text=f"Found {len(documents)} files",
+                            reply_id=reply_id,
+                            reply_markup=reply_markup
+                        )
+
+                    session_token = await update_session(str(chat_id), page)
+            else:
+               await sendTextMessage(str(chat_id), "Session Expired. Try searching the movie again", reply_id)
+        elif text == "prev:prev":
+            session_token = f"user:{chat_id}"
+            data = await get_user_from_session(session_token)
+            if data:
+                documents, page, reply_id = data
+                reply_markup, page = await getMoviesListKeyboard(documents, page, "prev")
+                if reply_markup:
+                    response = await editKeyboard(
+                            chat_id=chat_id,
+                            text=f"Found {len(documents)} files",
+                            reply_id=reply_id,
+                            reply_markup=reply_markup
+                        )
+
+                    session_token = await update_session(str(chat_id), page)
+            else:
+               await sendTextMessage(str(chat_id), "Session Expired. Try searching the movie again", reply_id)
         else:
             isSubscriber = await isSubscriberOfMoviesHub(chat_id)
             if isSubscriber:
@@ -48,42 +82,6 @@ async def main(request: dict):
                     await sendTextMessage(chat_id, "Send any movie name to search 🙂", reply_id)
                 elif text.startswith("@"):
                     pass
-                elif text == "next:next":
-                    session_token = f"user:{chat_id}"
-                    data = await get_user_from_session(session_token)
-                    if data:
-                        documents, page, reply_id = data
-                        reply_markup, page = await getMoviesListKeyboard(documents, page, "next")
-                        if reply_markup:
-                            response = await editKeyboard(
-                                    chat_id=chat_id,
-                                    text=f"Found {len(documents)} files",
-                                    reply_id=reply_id,
-                                    reply_markup=reply_markup
-                                )
-
-                            session_token = await update_session(str(chat_id), page)
-                    else:
-                       await sendTextMessage(str(chat_id), "Session Expired. Try searching the movie again", 
-                                        reply_id)
-                elif text == "prev:prev":
-                    session_token = f"user:{chat_id}"
-                    data = await get_user_from_session(session_token)
-                    if data:
-                        documents, page, reply_id = data
-                        reply_markup, page = await getMoviesListKeyboard(documents, page, "prev")
-                        if reply_markup:
-                            response = await editKeyboard(
-                                    chat_id=chat_id,
-                                    text=f"Found {len(documents)} files",
-                                    reply_id=reply_id,
-                                    reply_markup=reply_markup
-                                )
-
-                            session_token = await update_session(str(chat_id), page)
-                    else:
-                       await sendTextMessage(str(chat_id), "Session Expired. Try searching the movie again", 
-                                        reply_id)
                 else:
                     if text != "status":
                         documents = await search_movie(text.strip())
