@@ -262,7 +262,7 @@ pytweening==1.0.4
 pytz==2023.3
 pytzdata==2020.1
 PyWavelets==1.4.1
-pywin32==305
+pypiwin32
 pywinpty==2.0.9
 PyYAML==6.0
 pyzmq==24.0.1
