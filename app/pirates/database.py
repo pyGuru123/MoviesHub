@@ -16,9 +16,15 @@ COLLECTION = os.environ.get("COLLECTION")
 
 client = pymongo.MongoClient(CONNECTION_STRING)
 db = client[DATABASE]
-collection = db[COLLECTION]
+movies = db['Movies']
+series = db['WebSeries']
 
+collecions = [movies, series]
 
 async def search_movie(movie):
     pattern = f".*{movie}.*"
-    return list(collection.find({"caption": {"$regex": pattern, "$options": "i"}}))
+    result = []
+    for collection in collecions:
+        result.extend(list(collection.find({"caption": {"$regex": pattern, "$options": "i"}})))
+
+    return result
