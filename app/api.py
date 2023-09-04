@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from loguru import logger
 
-from app.pirates.router import router as ResponseRouter
+from app.moviesbot.router import router as ResponseRouter
 
 app = FastAPI(title="MoviesHubAPI")
 

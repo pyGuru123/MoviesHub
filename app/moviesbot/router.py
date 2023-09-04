@@ -3,8 +3,8 @@ from typing import Union
 from fastapi.responses import Response
 from loguru import logger
 
-from app.pirates.main import main
-from app.pirates.session import cleanup_sessions
+from app.moviesbot.main import main
+from app.moviesbot.session import cleanup_sessions
 
 router = APIRouter()
 

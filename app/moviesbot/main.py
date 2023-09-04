@@ -2,7 +2,7 @@ import json
 import telegram
 from loguru import logger
 
-from app.pirates.utils import (
+from app.moviesbot.utils import (
     isSubscriberOfMoviesHub,
     getJoinChannelKeyboard,
     sendKeyboard,
@@ -12,11 +12,11 @@ from app.pirates.utils import (
     getMoviesListKeyboard
 )
 
-from app.pirates.database import (
+from app.moviesbot.database import (
     search_movie
 )
 
-from app.pirates.session import *
+from app.moviesbot.session import *
 
 
 async def getChatInfo(content):
