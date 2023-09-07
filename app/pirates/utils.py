@@ -35,8 +35,12 @@ async def sendTextMessage(chat_id, text, reply_id):
     return info
 
 async def sendMarkupMessage(chat_id, text, reply_id):
-    info = await pirates_bot.send_message(chat_id=chat_id, text=text, reply_to_message_id=reply_id,
-                                        parse_mode=ParseMode.MARKDOWN)
+    if text:
+        info = await pirates_bot.send_message(chat_id=chat_id, text=text, reply_to_message_id=reply_id,
+                                            parse_mode=ParseMode.HTML)
+    else:
+        info = await sendTextMessage(chat_id, "No magnet found", reply_id)
+
     return info
 
 async def copyFile(chat_id, from_chat_id, message_id):

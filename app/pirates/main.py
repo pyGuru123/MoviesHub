@@ -15,6 +15,11 @@ from app.pirates.utils import (
 from app.pirates.functions import (
     get_libgen_links,
     get_ytsmx_links,
+    get_piratesbay_links,
+    get_bitsearch_links,
+    get_magnetdl_links,
+    get_nyaasi_links,
+    get_zooqle_links
 )
 
 
@@ -48,5 +53,25 @@ async def main(request: dict):
     elif text.startswith("/ytsmx"):
         query = " ".join(text.split()[1:])
         response = await get_ytsmx_links(query)
+        await sendMarkupMessage(chat_id, response, reply_id)
+    elif text.startswith("/piratesbay"):
+        query = " ".join(text.split()[1:])
+        response = await get_piratesbay_links(query)
+        await sendMarkupMessage(chat_id, response, reply_id)
+    elif text.startswith("/bitsearch"):
+        query = " ".join(text.split()[1:])
+        response = await get_bitsearch_links(query)
+        await sendMarkupMessage(chat_id, response, reply_id)
+    elif text.startswith("/magnetdl"):
+        query = " ".join(text.split()[1:])
+        response = await get_magnetdl_links(query)
+        await sendMarkupMessage(chat_id, response, reply_id)
+    elif text.startswith("/nyaasi"):
+        query = " ".join(text.split()[1:])
+        response = await get_nyaasi_links(query)
+        await sendMarkupMessage(chat_id, response, reply_id)
+    elif text.startswith("/zooqle"):
+        query = " ".join(text.split()[1:])
+        response = await get_zooqle_links(query)
         await sendMarkupMessage(chat_id, response, reply_id)
             
