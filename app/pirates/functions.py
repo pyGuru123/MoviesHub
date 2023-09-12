@@ -9,6 +9,8 @@ bitsearch_endpoint = base_endpoint + "/api/v1/leecher/bitsearch"
 magnetdl_endpoint = base_endpoint + "/api/v1/leecher/magnetdl"
 nyaasi_endpoint = base_endpoint + "/api/v1/leecher/nyaasi"
 zooqle_endpoint = base_endpoint + "/api/v1/leecher/zooqle"
+x1337_endpoint = base_endpoint + "/api/v1/leecher/1337x"
+kickass_endpoint = base_endpoint + "/api/v1/leecher/kickass"
 
 def parse_result(data_set):
 	result = ""
@@ -96,6 +98,28 @@ async def get_zooqle_links(movie):
 	}
 
 	response = requests.post(zooqle_endpoint, json=payload)
+	data_set = response.json()
+	result = parse_result(data_set)
+
+	return result
+
+async def get_1337x_links(movie):
+	payload  = {
+		"movie" : movie
+	}
+
+	response = requests.post(x1337_endpoint, json=payload)
+	data_set = response.json()
+	result = parse_result(data_set)
+
+	return result
+
+async def get_kickass_links(movie):
+	payload  = {
+		"movie" : movie
+	}
+
+	response = requests.post(kickass_endpoint, json=payload)
 	data_set = response.json()
 	result = parse_result(data_set)
 
