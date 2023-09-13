@@ -12,6 +12,8 @@ zooqle_endpoint = base_endpoint + "/api/v1/leecher/zooqle"
 x1337_endpoint = base_endpoint + "/api/v1/leecher/1337x"
 kickass_endpoint = base_endpoint + "/api/v1/leecher/kickass"
 
+cinevood_endpoint = base_endpoint + "/api/v1/gdtot/cinevood"
+
 def parse_result(data_set):
 	result = ""
 	for data in data_set[:5]:
@@ -120,6 +122,17 @@ async def get_kickass_links(movie):
 	}
 
 	response = requests.post(kickass_endpoint, json=payload)
+	data_set = response.json()
+	result = parse_result(data_set)
+
+	return result
+
+async def get_cinevood_links(movie):
+	payload  = {
+		"movie" : movie
+	}
+
+	response = requests.post(cinevood_endpoint, json=payload)
 	data_set = response.json()
 	result = parse_result(data_set)
 

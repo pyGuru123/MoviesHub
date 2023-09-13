@@ -19,7 +19,10 @@ from app.pirates.functions import (
     get_bitsearch_links,
     get_magnetdl_links,
     get_nyaasi_links,
-    get_zooqle_links
+    get_zooqle_links,
+    get_1337x_links,
+    get_kickass_links,
+    get_cinevood_links
 )
 
 
@@ -73,5 +76,17 @@ async def main(request: dict):
     elif text.startswith("/zooqle"):
         query = " ".join(text.split()[1:])
         response = await get_zooqle_links(query)
+        await sendMarkupMessage(chat_id, response, reply_id)
+    elif text.startswith("/1337x"):
+        query = " ".join(text.split()[1:])
+        response = await get_1337x_links(query)
+        await sendMarkupMessage(chat_id, response, reply_id)
+    elif text.startswith("/kickass"):
+        query = " ".join(text.split()[1:])
+        response = await get_kickass_links(query)
+        await sendMarkupMessage(chat_id, response, reply_id)
+    elif text.startswith("/cinevood"):
+        query = " ".join(text.split()[1:])
+        response = await get_cinevood_links(query)
         await sendMarkupMessage(chat_id, response, reply_id)
             
